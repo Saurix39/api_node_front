@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row" *ngIf="topic && status!='error'">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <app-topic [topic]="topic" [detail]="true"></app-topic>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <h2 class="fw-bold">Comments</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <form #commentForm="ngForm" (ngSubmit)="onSubmit(commentForm)">
+                <textarea class="form-control mt-2" placeholder="Leave your comment here" name="content" #content="ngModel" [(ngModel)]="comment.content" required></textarea>
+                <small *ngIf="content.touched && content.invalid" class="form-text d-block invalid-feedback">
+                    Invalid comment 
+                </small>
+                <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert" *ngIf="status=='error-comment'">
+                    <strong>Sorry!</strong> The comment has not been sent.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-success alert-dismissible fade show mt-2" role="alert" *ngIf="status=='success-comment'">
+                    Comment sent succesfully
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert" *ngIf="status=='error-delete'">
+                    <strong>Sorry!</strong> The comment has not been deleted.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-success alert-dismissible fade show mt-2" role="alert" *ngIf="status=='success-delete'">
+                    Comment deleted succesfully
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <button type="submit" class="btn btn-primary form-control mt-2" [disabled]="commentForm.invalid">Send comment</button>
+            </form>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <div class="card mt-1" *ngFor="let comment of topic.comments">
+                <div class="row">
+                    <div class="col">
+                        <img class="comment-img" src="{{comment.user.image && comment.user.image != null ? url+'/avatar/'+comment.user.image:'https://icons.iconarchive.com/icons/goescat/macaron/256/gimp-icon.png'}}" alt="Imagen del usuario">
+                        <span class="badge bg-primary">{{comment.user.name +" "+ comment.user.surname}}</span>
+                        <span class="badge bg-light text-dark">{{comment.date | amTimeAgo}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="content">{{comment.content}}</p>
+                </div>
+                <a *ngIf="comment.user._id==identity._id" (click)="deleteComment(comment._id)" class="delete-link">Delete</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mt-3">
+            <div class="alert alert-warning" role="alert" *ngIf="status=='no-params'">
+                Not all params have been recived!! 
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="status=='error'">
+                An error has been ocurred. Please try again
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+.title{
+    font-weight: bold;
+}
+.content{
+    padding: 10px;
+}
+.avatar-site{
+    display: flex;
+    justify-content: center;
+}
+.avatar{
+    width: 100%;
+    max-width: 200px;
+    border-radius: 50%;
+    margin: 10px;
+
+}

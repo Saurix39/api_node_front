@@ -1,0 +1,22 @@
+.footer{
+    color: rgb(133, 133, 133);
+}
+.contenido{
+    padding: 10px;
+}
+a{
+    text-decoration: none;
+}
+li{
+    display: block;
+}
+.contacto{
+    background-color: #757575;
+    margin: 3px;
+    -webkit-transition:all .2s linear;
+    -o-transition:all .2s linear;
+    transition:all .2s linear
+}
+.contacto:hover{
+    background:#000000;
+}

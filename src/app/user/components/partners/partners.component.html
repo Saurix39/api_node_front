@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="fw-bold text-center mt-3">Users in this web</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-sm-6 col-xl-3 mt-2" *ngFor="let user of partners">
+            <div class="card user-info">
+                <div class="row">
+                    <div class="col avatar-site">
+                        <img class="user-avatar" src="{{user.image && user.image!=null ? url+'/avatar/'+user.image:'https://icons.iconarchive.com/icons/goescat/macaron/256/gimp-icon.png'}}" alt="User image">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h2 class="text-center fw-bold">{{user.name+" "+user.surname}}</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-primary form-control">View profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div class="card register-info">
+                <h1 class="text-center titulo">{{title}}</h1>
+                <form class="formulario" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+                    <div class="mb-3">
+                      <label class="form-label">Name</label>
+                      <input name="name" #name="ngModel" [(ngModel)]="user.name" type="text" class="form-control"
+                      pattern="[a-zA-ZÀ-ÿ ]+" required>
+                      <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">Invalid name</small>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Surname</label>
+                      <input name="surname" #surname="ngModel" [(ngModel)]="user.surname" type="text" class="form-control"
+                      pattern="[a-zA-ZÀ-ÿ ]+" required>
+                      <small *ngIf="!surname.valid && surname.touched" class="invalid-feedback d-block">Invalid surname</small>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Email address</label>
+                      <input name="email" #email="ngModel" [(ngModel)]="user.email" type="email" class="form-control" email required>
+                      <small *ngIf="!email.valid && email.touched" class="invalid-feedback d-block">Invalid email</small>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">Password</label>
+                      <input name="password" #password="ngModel" [(ngModel)]="user.password" type="password" class="form-control" required>
+                      <small *ngIf="!password.valid && password.touched" class="invalid-feedback d-block">Invalid password</small>
+                    </div>
+                    <div *ngIf="status=='error'" class="alert alert-danger alert-dismissible fade show" role="alert">
+                      An error has occurred. Please try again
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <div *ngIf="status=='success'" class="alert alert-success alert-dismissible fade show" role="alert">
+                      User registered succesfully.
+                      <a [routerLink]="['/login']">Click here to log in</a>
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <button type="submit" class="btn btn-primary form-control" [disabled]="registerForm.invalid">Submit</button>
+                  </form>
+            </div>
+        </div>
+    </div>
+</div>
+

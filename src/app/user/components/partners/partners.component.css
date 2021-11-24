@@ -1,0 +1,12 @@
+.user-avatar{
+    border-radius: 50%;
+    max-width: 150px;
+    width: 100%;
+}
+.avatar-site{
+    display: flex;
+    justify-content: center;
+}
+.user-info{
+    padding: 15px;
+}

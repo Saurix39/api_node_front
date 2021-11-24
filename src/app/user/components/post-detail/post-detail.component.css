@@ -1,0 +1,18 @@
+.comment-img{
+    max-width: 35px;
+    border-radius: 50%;
+    margin: 10px;
+}
+.content{
+    margin-left: 10px;
+}
+.delete-link{
+    color: rgb(40, 132, 251);
+    margin-left: 10px;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+.delete-link:hover{
+    cursor: pointer;
+    color: rgb(0, 53, 122);
+}

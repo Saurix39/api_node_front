@@ -1,0 +1,17 @@
+.brand{
+    color: rgb(179, 179, 179);
+    text-decoration: none;
+    font-size: 25px;
+}
+.brand:hover{
+    color: rgb(200, 200, 200);;
+}
+.active-link{
+    color: white;
+}
+.active-link:hover{
+    color: white;
+}
+.home{
+    font-size: 22px;
+}

@@ -1,0 +1,41 @@
+<div class="card mt-3">
+    <div class="container">
+        <div class="row">
+            <div class="col mt-2">
+                <a>
+                    <img class="image" src="{{topic.user.image && topic.user.image != null ? url+'/avatar/'+topic.user.image:'https://icons.iconarchive.com/icons/goescat/macaron/256/gimp-icon.png'}}" alt="Imagen del usuario">
+                    <h1 class="name">{{topic.user.name}}</h1>
+                </a>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+                <h1 class="title text-center">{{topic.title}}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>
+                    {{topic.content}}
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>
+                    {{topic.code}}
+                </p>
+                <button class="btn btn-primary form-control" [routerLink]="['/user/detail/topic',topic._id]" *ngIf="identity && identity._id && detail!=true">Interact in this topic</button>
+            </div>
+        </div>
+        <div class="row add-info mt-2">
+            <div class="col-12 col-sm-6">
+                <p>Lang: {{topic.lang}}</p>
+            </div>
+            <div class="col-12 col-sm-6">
+                <p class="fecha">Posted: {{topic.date | amTimeAgo}}</p>
+            </div>
+        </div>
+    </div>
+</div>

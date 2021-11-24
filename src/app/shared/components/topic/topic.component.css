@@ -1,0 +1,21 @@
+.image{
+    border-radius: 50%;
+    width: 60px;
+    max-width: 60px;
+    display: inline-block;
+}
+.name{
+    display: inline-block;
+    margin-left: 15px;
+    font-weight: bold;
+    color: black;
+}
+.title{
+    font-weight: bold;
+}
+.fecha{
+    float: right;
+}
+.add-info{
+    color: rgb(138, 138, 138);
+}

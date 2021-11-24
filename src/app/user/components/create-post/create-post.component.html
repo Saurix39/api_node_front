@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+        </div>
+        <div class="col-lg-6">
+            <div class="card mt-3">
+                <h1 class="title text-center">{{page_title}}</h1>
+                <form #createPostForm="ngForm" (ngSubmit)="onSubmit(createPostForm)">
+                    <div class="mb-3">
+                      <label class="form-label">Title</label>
+                      <input type="text" class="form-control" name="title" #title="ngModel" [(ngModel)]="topic.title" required>
+                      <small *ngIf="title.invalid && title.touched" class="form-text invalid-feedback d-block">Invalid title</small>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Content</label>
+                        <textarea name="content" class="form-control" #content="ngModel" [(ngModel)]="topic.content" required></textarea>
+                        <small *ngIf="content.invalid && content.touched" class="form-text invalid-feedback d-block">Invalid content</small>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Code</label>
+                        <textarea type="text" class="form-control" name="code" #code="ngModel" [(ngModel)]="topic.code" required></textarea>
+                        <small *ngIf="code.invalid && code.touched" class="form-text invalid-feedback d-block">Invalid code</small>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Language</label>
+                        <input type="text" class="form-control" name="lang" #lang="ngModel" [(ngModel)]="topic.lang" required>
+                        <small *ngIf="lang.invalid && lang.touched" class="form-text invalid-feedback d-block">Invalid language</small>
+                    </div>
+                    <div *ngIf="status=='error'" class="alert alert-danger alert-dismissible fade show" role="alert">
+                        An error has occurred. Please try again
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <div *ngIf="status=='success'" class="alert alert-success alert-dismissible fade show" role="alert">
+                        Topic created succesfully
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <button type="submit" class="btn btn-primary form-control" [disabled]="createPostForm.invalid">Submit</button>
+                  </form>
+            </div>
+        </div>
+    </div>
+</div>

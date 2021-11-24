@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-12 col-md-6 mt-3">
+            <div class="card content">
+                <h1 class="text-center title">{{title}}</h1>
+                <form #editForm="ngForm" (ngSubmit)="onSubmit(editForm)">
+                    <div class="mb-3">
+                      <label class="form-label">Name</label>
+                      <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="user.name"
+                      pattern="[a-zA-ZÀ-ÿ ]+">
+                      <div *ngIf="name.invalid && name.touched" class="form-text invalid-feedback d-block ">Invalid name</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Surname</label>
+                        <input type="text" class="form-control" name="surname" #surname="ngModel" [(ngModel)]="user.surname"
+                        pattern="[a-zA-ZÀ-ÿ ]+">
+                        <div *ngIf="surname.invalid && surname.touched" class="form-text invalid-feedback d-block ">Invalid surname</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" #email="ngModel" [(ngModel)]="user.email" email>
+                        <div *ngIf="email.invalid && email.touched" class="form-text invalid-feedback d-block ">Invalid email</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Avatar</label>
+                        <div class="avatar-site">
+                            <img class="avatar" src="{{user.image && user.image!=null ? url+'/avatar/'+user.image:'https://icons.iconarchive.com/icons/goescat/macaron/256/gimp-icon.png'}}" alt="">
+                        </div>
+                        <angular-file-uploader 
+                            [config]="afuConfig"
+                            (ApiResponse)="avatarUpload($event)">
+                        </angular-file-uploader>
+                    </div>
+                    <div *ngIf="status=='error'" class="alert alert-danger alert-dismissible fade show" role="alert">
+                        An error has occurred. Please try again
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                      <div *ngIf="status=='success'" class="alert alert-success alert-dismissible fade show" role="alert">
+                        User edited succesfully
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                    <button type="submit" class="btn btn-primary form-control" [disabled]="editForm.invalid">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

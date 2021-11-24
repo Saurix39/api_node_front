@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="row" *ngIf="totalTopics>=1">
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-10 mt-3">
+            <table class="table table-dark table-striped table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th>Titulo</th>
+                        <th>Fecha</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let topic of topics">
+                      <td>{{topic.title}}</td>
+                      <td>{{topic.date|amDateFormat:'LL'}}</td>
+                      <td>
+                        <button type="button" class="btn btn-warning me-2" [routerLink]="['/user/edit/topic/',topic._id]">Edit</button>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#modal'+topic._id">Delete</button>
+                        <div class="modal fade text-dark" id="{{'modal'+topic._id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h4 class="modal-title fw-bold" id="exampleModalLabel">Esta seguro de que desea eliminar el topic...</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                {{topic.title}}
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteTopic(topic)">Delete</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <nav aria-label="...">
+            <ul class="pagination justify-content-center">
+              <li class="page-item {{(page == 1 ? 'disabled':'')}}">
+                <a class="page-link" [routerLink]="['/user/list/post', page*1-1*1]" tabindex="-1" aria-disabled="true">Previous</a>
+              </li>
+              <li class="page-item" routerLinkActive="active" *ngFor="let pag of counter(total_pages<5 ? total_pages:5);let i = index "><a class="page-link"  [routerLink]="['/user/list/post/',
+                      page==1 ? page*1 + i*1: page*1-2*1 < 1 ? (page*1-1*1)+i*1: page*1+2*1 > total_pages ? (total_pages*1-(total_pages <= 4 ? total_pages*1-1:4*1))+i*1:page*1-2*1+i*1]">
+                  {{
+                      page==1 ? page*1 + i*1: page*1-2*1 < 1 ? (page*1-1*1)+i*1: page*1+2*1 > total_pages ? (total_pages*1-(total_pages <= 4 ? total_pages*1-1*1:4*1))+i*1:page*1-2*1+i*1
+                  }}</a></li>
+              <li class="page-item" *ngIf="(page*1+4*1 < total_pages && page==1) || (page*1+3*1 < total_pages && page==2) || (page*1 + 2*1 < total_pages && page!=1 && page!=2)" aria-current="page">
+                <a class="page-link" [routerLink]="['/user/list/post', page==1 ? '6':page==2?page*1+4:page*1+3]">...</a>
+              </li>
+              <li class="page-item {{page==total_pages ? 'disabled':''}}">
+                <a class="page-link" [routerLink]="['/user/list/post', page*1+1*1]">Next</a>
+              </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="row" *ngIf="totalTopics==0">
+      <div class="col">
+        <div class="alert alert-warning mt-3 fs-5" role="alert">
+          You don't have posts to show right now!! <a [routerLink]="['/user/home']" class="alert-link">Go home</a>
+        </div>
+      </div>
+    </div>
+</div>
